@@ -33,6 +33,7 @@ class MyHomePage extends ConsumerWidget {
                 return Expanded(flex: 9, child: Text("No data"));
               },
             ),
+            SizedBox(height: 10),
             MessageSendField(
               txtController: txtController,
               socket: ref.read(messageProvider.notifier).socket!,

@@ -14,23 +14,22 @@ class MessageSendField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 1,
+      flex: 2,
       child: Container(
         child: TextField(
           controller: txtController,
           style: TextStyle(color: Colors.white),
           decoration: InputDecoration(
+            hintText: "Type...",
+            hintStyle: TextStyle(color: Colors.white60),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
               borderSide: BorderSide(width: 2, color: Colors.white),
             ),
             suffixIcon: IconButton(
               onPressed: () {
-                socket.emit('message', {
-                  'user': socket.id,
-                  'text': txtController.text,
-                  "time": DateTime.now().toString()
-                });
+                sendMessage();
+                txtController.clear();
               },
               icon: Icon(
                 Icons.send,
@@ -41,5 +40,13 @@ class MessageSendField extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void sendMessage() {
+    socket.emit('message', {
+      'user': socket.id,
+      'text': txtController.text,
+      "time": DateTime.now().toString()
+    });
   }
 }

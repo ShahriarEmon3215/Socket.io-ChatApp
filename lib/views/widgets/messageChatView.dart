@@ -17,8 +17,11 @@ class MessageChatView extends StatelessWidget {
         child: Container(
           child: ListView.builder(
             itemCount: messages.length,
+            reverse: true,
             itemBuilder: (context, index) {
-              var msg = messages[index];
+            //  var msg = messages[index];
+               final reversedIndex = messages.length - 1 - index;
+              final msg = messages[reversedIndex];
               return MessageBubble(
                 text: msg.text,
                 user: msg.user,
