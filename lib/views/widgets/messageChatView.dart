@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../models/message.dart';
-import '../../models/message_item_view.dart';
+import 'message_item_view.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class MessageChatView extends StatelessWidget {
@@ -22,6 +22,7 @@ class MessageChatView extends StatelessWidget {
               return MessageBubble(
                 text: msg.text,
                 user: msg.user,
+                time: msg.time,
                 socket: socket,
               );
             },

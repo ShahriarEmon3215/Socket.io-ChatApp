@@ -30,7 +30,7 @@ class MyHomePage extends ConsumerWidget {
                     messages: state.messageList,
                   );
                 }
-                return Expanded(child: Text("No data"));
+                return Expanded(flex: 9, child: Text("No data"));
               },
             ),
             MessageSendField(

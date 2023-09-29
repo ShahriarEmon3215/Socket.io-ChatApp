@@ -28,7 +28,8 @@ class MessageSendField extends StatelessWidget {
               onPressed: () {
                 socket.emit('message', {
                   'user': socket.id,
-                  'text': txtController.text
+                  'text': txtController.text,
+                  "time": DateTime.now().toString()
                 });
               },
               icon: Icon(
