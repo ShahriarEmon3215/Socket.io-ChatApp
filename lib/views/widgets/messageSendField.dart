@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:socket_chat_app/controllers/message_controller.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class MessageSendField extends StatelessWidget {
@@ -6,10 +7,12 @@ class MessageSendField extends StatelessWidget {
     super.key,
     required this.txtController,
     required this.socket,
+    required this.controller,
   });
 
   final TextEditingController txtController;
   final IO.Socket socket;
+  final MessageNotifier controller;
 
   @override
   Widget build(BuildContext context) {

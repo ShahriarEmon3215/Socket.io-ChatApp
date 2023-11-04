@@ -4,13 +4,23 @@ import '/controllers/message_controller.dart';
 import '/views/widgets/messageChatView.dart';
 import '/views/widgets/messageSendField.dart';
 
-class MyHomePage extends ConsumerWidget {
-  MyHomePage();
+class MyHomePage extends ConsumerStatefulWidget {
+  @override
+  ConsumerState<MyHomePage> createState() => _MyHomePageState();
+}
 
-  var txtController = TextEditingController();
+class _MyHomePageState extends ConsumerState<MyHomePage> {
+  final txtController = TextEditingController();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void initState() {
+    super.initState();
+    ref.read(messageProvider).connectAndfetchMessage();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var controller = ref.watch(messageProvider);
     return Scaffold(
       backgroundColor: Colors.black87,
       appBar: AppBar(
@@ -21,22 +31,23 @@ class MyHomePage extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Consumer(
-              builder: (context, ref, child) {
-                var state = ref.watch(messageProvider);
-                if (state is MessageLoadedState) {
+            Builder(
+              builder: (context) {
+              //  if (controller.messagesList.isNotEmpty) {
                   return MessageChatView(
-                    socket: state.socket!,
-                    messages: state.messageList,
+                    socket: controller.socket!,
+                    messages: controller.messagesList,
+                    controller: controller,
                   );
-                }
-                return Expanded(flex: 9, child: Text("No data"));
+              //  }
+                //return Expanded(flex: 9, child: Text("No data"));
               },
             ),
             SizedBox(height: 10),
             MessageSendField(
               txtController: txtController,
               socket: ref.read(messageProvider.notifier).socket!,
+              controller: controller,
             ),
           ],
         ),
