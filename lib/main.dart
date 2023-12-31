@@ -2,8 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:socket_chat_app/views/login_screen.dart';
 
 import 'views/messageBoard.dart';
+
+String me = "";
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
@@ -29,9 +32,7 @@ class MyApp extends StatelessWidget {
           PointerDeviceKind.unknown
         },
       ),
-      home: MyHomePage(),
+      home: LoginScreen(),
     );
   }
 }
-
-

@@ -33,20 +33,20 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
           children: [
             Builder(
               builder: (context) {
-              //  if (controller.messagesList.isNotEmpty) {
-                  return MessageChatView(
-                    socket: controller.socket!,
-                    messages: controller.messagesList,
-                    controller: controller,
-                  );
-              //  }
+                //  if (controller.messagesList.isNotEmpty) {
+                return MessageChatView(
+                // socket: controller.socket!,
+                  messages: controller.messagesList,
+                  controller: controller,
+                );
+                //  }
                 //return Expanded(flex: 9, child: Text("No data"));
               },
             ),
             SizedBox(height: 10),
             MessageSendField(
               txtController: txtController,
-              socket: ref.read(messageProvider.notifier).socket!,
+            //  socket: ref.read(messageProvider.notifier).socket!,
               controller: controller,
             ),
           ],
